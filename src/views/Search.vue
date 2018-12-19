@@ -13,27 +13,25 @@
         </router-link>
       </li>
       <li><img :src="item.Poster"></li>
-      
+
     </ul>
   </div>
 </template>
 
 <script>
-  import axios from 'axios'
+import axios from 'axios'
 
-  export default {
-    name: 'app',
-    props: {
+export default {
+  data() {
+    return {
       search: '',
-      items: '',
-    },
-    methods: {
-      fetchItems: function () {
-        axios.get(`http://www.omdbapi.com/?s=${this.search}&apikey=db6050af`).then(response => {this.items = response.data.Search})
-      }
-    },
-    mounted: function () {
+      items: null,
+    };
+  },
+  methods: {
+    fetchItems: function () {
+      axios.get(`http://www.omdbapi.com/?s=${this.search}&apikey=db6050af`).then(response => {this.items = response.data.Search})
     }
-  };
-
+  },
+};
 </script>
