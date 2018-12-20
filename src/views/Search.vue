@@ -1,19 +1,19 @@
 <template>
   <div class="search">
-    <h1>Buscar </h1>
-    <form @submit.prevent="fetchItems">
-      <input type="text" name="search" v-model="search">
-      <button class="search">Buscar</button>
+    <form class="movie-search" @submit.prevent="fetchItems">
+      <input spellcheck="false" type="text" name="search" v-model="search">
     </form>
 
-    <ul v-for="item in items">
-      <li>
-        <router-link :to="`movie/${item.imdbID}`">
-          {{ item.Title }}
+    <ul class="movie-list">
+      <li v-for="item in items">
+        <router-link class="movie-link" :to="`movie/${item.imdbID}`">
+          <div :style="{backgroundImage: `url(${item.Poster})`}">
+            <p>
+              {{ item.Title }}
+            </p>
+          </div>
         </router-link>
       </li>
-      <li><img :src="item.Poster"></li>
-
     </ul>
   </div>
 </template>

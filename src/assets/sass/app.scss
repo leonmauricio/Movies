@@ -2,5 +2,131 @@
 @import '../../../node_modules/normalize.css/normalize.css';
 
 body {
-	background-color: red;
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+ul {
+  list-style: none;
+}
+
+input {  }
+
+a, a:visited {
+  color: inherit;
+  text-decoration: none;
+}
+
+header {
+  background-color: green;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  align-items: center;
+
+  h1 {
+    margin: 0;
+    padding: 0.5rem;
+    color: white;
+    font-size: 1.5rem;
+  }
+
+  button {
+    font-size: 1.5rem;
+    background: none;
+    color: white;
+    border: none;
+    display: inline-block;
+    padding: 0.75rem;
+  }
+}
+
+.movie-list {
+  padding: 0;
+  margin: 1rem;
+  display: grid;
+  grid-column-gap: 1rem;
+  grid-template-columns: 1fr 1fr;
+
+  li {
+    margin-bottom: 1rem;    
+
+    .movie-link {
+      color: #FFF;
+
+      > div {
+        height: 250px;
+        background-repeat: no-repeat;
+        background-size: cover;
+        display: flex;
+        align-items: flex-end;
+
+        > p {
+          margin: 0;
+          padding: 1rem;
+          font-size: 0.8rem;
+          font-weight: bold;
+          /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#000000+0,000000+48&0+0,0.65+48 */
+          background: -moz-linear-gradient(top, rgba(0,0,0,0) 0%, rgba(0,0,0,0.65) 48%); /* FF3.6-15 */
+          background: -webkit-linear-gradient(top, rgba(0,0,0,0) 0%,rgba(0,0,0,0.65) 48%); /* Chrome10-25,Safari5.1-6 */
+          background: linear-gradient(to bottom, rgba(0,0,0,0) 0%,rgba(0,0,0,0.65) 48%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+          filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#a6000000',GradientType=0 ); /* IE6-9 */
+        }
+      }
+    }
+  }
+}
+
+.movie-search{
+
+  > input {
+    width: 95%;
+    margin: 0.5rem;
+    box-sizing: border-box;
+    border-radius: 6px;
+    border: 1px solid #DDD;
+    font-size: 1.5rem;
+    padding: 0.5rem;
+
+    &:focus {
+      outline: none;
+    }
+  }
+}
+
+.movie-detail {
+
+  > .desc-poster {
+    background-repeat: no-repeat;
+    height: 200px;
+    background-size: cover;
+    background-position: 0% 15%;
+    display: flex;
+    align-items: flex-end;
+
+    > .movie-title {
+      padding: 1rem;
+      margin: 0;
+      color: white;
+      /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#000000+0,000000+48&0+0,0.65+48 */
+      background: -moz-linear-gradient(top, rgba(0,0,0,0) 0%, rgba(0,0,0,0.65) 48%); /* FF3.6-15 */
+      background: -webkit-linear-gradient(top, rgba(0,0,0,0) 0%,rgba(0,0,0,0.65) 48%); /* Chrome10-25,Safari5.1-6 */
+      background: linear-gradient(to bottom, rgba(0,0,0,0) 0%,rgba(0,0,0,0.65) 48%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+      filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#a6000000',GradientType=0 ); /* IE6-9 */
+    }
+  }
+
+  > .desc-division {
+    padding: 0.2rem 2rem;
+
+    > h4 {
+      margin: 0.7rem 0rem;
+      color: green;
+    }
+
+    > p {
+      margin-top: 0.1rem;
+    }
+  }
 }
