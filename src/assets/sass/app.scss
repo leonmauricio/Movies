@@ -11,8 +11,6 @@ ul {
   list-style: none;
 }
 
-input {  }
-
 a, a:visited {
   color: inherit;
   text-decoration: none;
@@ -131,3 +129,120 @@ header {
     }
   }
 }
+
+.general-form{
+  padding: 0.2rem 2rem;
+  > label{
+    text-align: left;
+  }
+  > input, textarea {
+    width: 90%;
+    margin: 0 auto;
+    border-radius: 3px;
+    padding: 5px;
+    border: 1px solid black;
+    margin: 10px 0px;
+  }
+}
+
+.action-button{
+  width: 90%;
+  box-sizing: content-box;
+  padding: 10px 6px;
+  color: white;
+  background-color: #007bff;
+  border: 1px solid #007bff;
+}
+
+.main-menu{
+    background-color: black;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  > ul {
+    padding: 0;
+    > li.menu-link {
+      background-color: #007bff;
+      border: 2px solid #007bff;
+      margin: 5px;
+      text-align: center;
+      > a {
+        padding: 1.5em 5em;
+        display: inline-block;
+      }
+      > :last-child {
+        padding: 1.5em 5em;
+        display: inline-block;
+      };
+    }
+  }
+}
+
+.star-container{
+  text-align: center;
+}
+
+.star{
+  color: gray;
+  font-size: 50px;
+  display: inline;
+  user-select: none;
+}
+
+.star-active {
+  color: yellow;
+}
+
+.logout-message{
+  text-align: center;
+  font-weight: bold;
+}
+
+/*
+.form-group {
+  position:relative;  
+
+  & + .form-group {
+    margin-top: 30px;
+  }
+}
+
+.form-label {
+  position: absolute;
+  left: 0;
+  top: 10px;
+  color: #999;
+  background-color: #fff;
+  z-index: 10;
+  transition: transform 150ms ease-out, font-size 150ms ease-out;
+}
+
+.focused .form-label {
+  transform: translateY(-125%);
+  font-size: .75em;
+}
+
+.form-input {
+  position: relative;
+  padding: 12px 0px 5px 0;
+  width: 100%;
+  outline: 0;
+  border: 0;
+  box-shadow: 0 1px 0 0 #e5e5e5;
+  transition: box-shadow 150ms ease-out;
+  
+  &:focus {
+    box-shadow: 0 2px 0 0 blue;
+  }
+}
+
+.form-input.filled {
+  box-shadow: 0 2px 0 0 lightgreen;
+}
+*/

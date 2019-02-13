@@ -29,18 +29,17 @@
         <p class="stats">
           {{ movie.Metascore }}
         </p>
-        <p v-on:click="addToFav" v-if="fav != 1" class="add-fav">
-          Agregar a favoritos
-        </p>
-        <p v-else>
-          Pelicula ya agregada a favoritos.
-          <br>
-          No, no la podes sacar. No se puede.
-        </p>
-        <p v-on:click="fetchFav" class="add-fav">
-          Check
-        </p>
+        <MovieRating></MovieRating>
+        <div v-if="loggedIn">
+          <button v-on:click="addToFavorites" v-if="!isFavorite" class="add-fav">
+            Agregar a favoritos
+          </button>
+          <button v-on:click="removeFromFavorites" v-if="isFavorite" class="add-fav">
+            Nah malisima al final
+          </button>
+        </div>
       </div>
+      <AppComments></AppComments>
     </div>
     <div v-else>
       CARGANDO...
@@ -50,13 +49,37 @@
 
 <script>
 import axios from 'axios';
+import cookies from 'browser-cookies';
+import AppComments from '@/components/AppComments.vue';
+import MovieRating from '@/components/MovieRating.vue';
 
 export default {
+  components: {
+    AppComments,
+    MovieRating,
+  },
   data() {
     return {
       movie: null,
-      fav: null,
+      favorites: [],
     };
+  },
+  computed: {
+    isFavorite() {
+      if (!this.movie) return false;
+      const { id } = this.$route.params;
+      let isFavorite = false;
+      this.favorites.forEach((favorite) => {
+        if (favorite.id === id) isFavorite = true;
+      });
+      return isFavorite;
+    },
+    loggedIn() {
+      if (!cookies.get('userName')) {
+        return false;
+      }
+      return true;
+    },
   },
   methods: {
     fetchMovie() {
@@ -67,42 +90,26 @@ export default {
           return true;
         });
     },
-    addToFav() {
-        let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
-        let favList = JSON.parse(localStorage.getItem('favList')) || [];
-
-        this.fav = 1;
-
-        const params = {
-          path: this.$route.fullPath,
-          title: this.movie.Title,
-          poster: this.movie.Poster,
-        }
-
-        favorites.push(params);
-        favList.push(this.$route.params.id);
-
-        localStorage.setItem('favorites', JSON.stringify(favorites));
-        localStorage.setItem('favList', JSON.stringify(favList));
+    parseFavorites() {
+      this.favorites = JSON.parse(localStorage.getItem('favorites')) || [];
     },
-    checkFav(){
-      let favList = JSON.parse(localStorage.getItem('favList')) || [];
-
-      const index = favList.indexOf(this.$route.params.id);
-
-      if (index != -1) {
-        this.fav = 1;
-      }
-
+    addToFavorites() {
+      this.favorites.push({
+        id: this.$route.params.id,
+        title: this.movie.Title,
+        poster: this.movie.Poster,
+      });
+      localStorage.setItem('favorites', JSON.stringify(this.favorites));
     },
-    fetchFav() {
-      console.log(JSON.parse(localStorage.getItem('favorites')));
-      console.log(JSON.parse(localStorage.getItem('favList')));
+    removeFromFavorites() {
+      const favPosition = this.favorites.findIndex(favorite => favorite.id === this.$route.params.id);
+      this.favorites.splice(favPosition, 1);
+      localStorage.setItem('favorites', JSON.stringify(this.favorites));
     },
   },
   mounted() {
     this.fetchMovie();
-    this.checkFav();
+    this.parseFavorites();
   },
 };
 </script>

@@ -2,7 +2,7 @@
   <div class="search">
     <ul class="movie-list">
       <li v-for="item in items">
-        <router-link class="movie-link" :to="`${item.path}`">
+        <router-link class="movie-link" :to="`movie/${item.id}`">
           <div :style="{backgroundImage: `url(${item.poster})`}">
             <p>
               {{ item.title }}
@@ -23,9 +23,9 @@ export default {
     };
   },
   methods: {
-    fetchItems: function () {
+    fetchItems() {
       this.items = JSON.parse(localStorage.getItem('favorites'));
-    }
+    },
   },
   mounted() {
     this.fetchItems();

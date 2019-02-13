@@ -5,7 +5,7 @@
     </form>
 
     <ul class="movie-list">
-      <li v-for="item in items">
+      <li v-for="(item,index) in items" :key="index">
         <router-link class="movie-link" :to="`movie/${item.imdbID}`">
           <div :style="{backgroundImage: `url(${item.Poster})`}">
             <p>
@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import axios from 'axios'
+import axios from 'axios';
 
 export default {
   data() {
@@ -29,9 +29,9 @@ export default {
     };
   },
   methods: {
-    fetchItems: function () {
-      axios.get(`http://www.omdbapi.com/?s=${this.search}&apikey=db6050af`).then(response => {this.items = response.data.Search})
-    }
+    fetchItems() {
+      axios.get(`http://www.omdbapi.com/?s=${this.search}&apikey=db6050af`).then((response) => { this.items = response.data.Search; });
+    },
   },
 };
 </script>

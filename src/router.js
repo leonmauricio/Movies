@@ -3,6 +3,7 @@ import Router from 'vue-router';
 import Search from './views/Search.vue';
 import Movie from './views/Movie.vue';
 import Fav from './views/Fav.vue';
+import Login from './views/Login.vue';
 
 Vue.use(Router);
 
@@ -24,6 +25,11 @@ export default new Router({
       path: '/favorites',
       name: 'fav',
       component: Fav,
+    },
+    {
+      path: '/login',
+      name: 'login',
+      component: Login,
     },
   ],
 });
